@@ -1,0 +1,536 @@
+[gd_scene load_steps=55 format=2]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[sub_resource type="VisualShaderNodeTexture" id=3]
+output_port_for_preview = 0
+texture = SubResource( 2 )
+
+[sub_resource type="VisualShaderNodeVectorOp" id=4]
+output_port_for_preview = 0
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.5, 0.5, 0 ) ]
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.465409, 0.509434, 0.610063, 1 )
+colors = PoolColorArray( 0.0356445, 0.0687828, 0.285156, 1, 0.115387, 0.404993, 0.777344, 1, 0.871094, 0.842809, 0.612488, 1, 0.171875, 1, 0, 1, 0.10675, 0.621094, 0, 1 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="VisualShaderNodeTexture" id=7]
+output_port_for_preview = 0
+texture = SubResource( 6 )
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0.974843, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="VisualShaderNodeTexture" id=10]
+output_port_for_preview = 0
+texture = SubResource( 9 )
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id=11]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=12]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=13]
+default_input_values = [ 0, 1.0472 ]
+function = 1
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=14]
+default_input_values = [ 0, 1.0472 ]
+function = 0
+
+[sub_resource type="VisualShaderNodeScalarOp" id=15]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id=16]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeScalarOp" id=17]
+output_port_for_preview = 0
+operator = 1
+
+[sub_resource type="VisualShaderNodeVectorOp" id=18]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="Gradient" id=19]
+offsets = PoolRealArray( 0.377358, 1 )
+colors = PoolColorArray( 0.167969, 0.167969, 0.167969, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=20]
+gradient = SubResource( 19 )
+
+[sub_resource type="VisualShaderNodeTexture" id=21]
+texture = SubResource( 20 )
+
+[sub_resource type="Gradient" id=22]
+offsets = PoolRealArray( 0.81761, 1 )
+colors = PoolColorArray( 0.14902, 0.45098, 0.964706, 0, 0.0823529, 0.396078, 1, 0.709804 )
+
+[sub_resource type="GradientTexture" id=23]
+gradient = SubResource( 22 )
+
+[sub_resource type="VisualShaderNodeTexture" id=24]
+texture = SubResource( 23 )
+
+[sub_resource type="VisualShaderNodeVectorInterp" id=25]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=26]
+uniform_name = "rotation"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id=27]
+
+[sub_resource type="VisualShaderNodeVectorOp" id=28]
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.5, 0.5, 0 ) ]
+operator = 1
+
+[sub_resource type="VisualShaderNodeScalarOp" id=29]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=30]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=31]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id=32]
+output_port_for_preview = 0
+default_input_values = [ 0, Vector3( 0, 0, 0 ), 1, Vector3( 0.5, 0.5, 0 ) ]
+
+[sub_resource type="VisualShaderNodeScalarOp" id=33]
+default_input_values = [ 0, 0.0, 1, 180.0 ]
+operator = 3
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=34]
+constant = 3.14159
+
+[sub_resource type="VisualShaderNodeScalarOp" id=35]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorFunc" id=37]
+output_port_for_preview = 0
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=38]
+size = Vector2( 192, 92 )
+expression = "//Atmosphere"
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=39]
+size = Vector2( 164, 154 )
+expression = "//Convert
+//radians
+//to degrees"
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=40]
+size = Vector2( 250, 150 )
+expression = "//Here's the rotated
+//UV"
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=41]
+size = Vector2( 192, 92 )
+expression = "//Distort UV"
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=42]
+size = Vector2( 261, 159 )
+expression = "//Mix distorted noise
+//and atmosphere"
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=43]
+size = Vector2( 266, 227 )
+expression = "//Multiply with
+//gradient to give it
+//a shade.
+//In preview, the
+//rotation isn't
+//updated because we
+//use param"
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=44]
+size = Vector2( 171, 108 )
+expression = "//Shade"
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=45]
+size = Vector2( 186, 92 )
+expression = "//1.6 is the distortion strength"
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=46]
+size = Vector2( 206, 157 )
+expression = "//God this is
+//so confusing"
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=47]
+size = Vector2( 249, 115 )
+expression = "//UV is everything"
+
+[sub_resource type="VisualShaderNodeVectorLen" id=48]
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id=49]
+size = Vector2( 270, 164 )
+expression = "//Tips: While sliding
+//the rotation param,
+//hold ctrl to get
+//integer value"
+
+[sub_resource type="VisualShaderNodeScalarOp" id=50]
+default_input_values = [ 0, 0.0, 1, 1.6 ]
+operator = 5
+
+[sub_resource type="VisualShaderNodeScalarOp" id=51]
+default_input_values = [ 0, 0.0, 1, 2.0 ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarOp" id=52]
+default_input_values = [ 0, 0.0, 1, 0.5 ]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id=53]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="VisualShader" id=54]
+code = "shader_type canvas_item;
+uniform float rotation;
+uniform sampler2D tex_frg_23;
+uniform sampler2D tex_frg_10;
+uniform sampler2D tex_frg_12;
+uniform sampler2D tex_frg_24;
+uniform sampler2D tex_frg_13;
+
+
+// GlobalExpression:0
+	//Atmosphere
+// GlobalExpression:1
+	//Convert
+	//radians
+	//to degrees
+// GlobalExpression:2
+	//Here's the rotated
+	//UV
+// GlobalExpression:3
+	//Distort UV
+// GlobalExpression:4
+	//Mix distorted noise
+	//and atmosphere
+// GlobalExpression:5
+	//Multiply with
+	//gradient to give it
+	//a shade.
+	//In preview, the
+	//rotation isn't
+	//updated because we
+	//use param
+// GlobalExpression:6
+	//Shade
+// GlobalExpression:7
+	//1.6 is the distortion strength
+// GlobalExpression:8
+	//God this is
+	//so confusing
+// GlobalExpression:9
+	//UV is everything
+// GlobalExpression:10
+	//Tips: While sliding
+	//the rotation param,
+	//hold ctrl to get
+	//integer value
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:2
+	vec3 n_out2p0 = vec3(UV, 0.0);
+
+// VectorOp:3
+	vec3 n_in3p1 = vec3(0.50000, 0.50000, 0.00000);
+	vec3 n_out3p0 = n_out2p0 - n_in3p1;
+
+// VectorDecompose:14
+	float n_out14p0 = n_out3p0.x;
+	float n_out14p1 = n_out3p0.y;
+	float n_out14p2 = n_out3p0.z;
+
+// ScalarUniform:28
+	float n_out28p0 = rotation;
+
+// Scalar:36
+	float n_out36p0 = 3.141590;
+
+// ScalarOp:35
+	float n_in35p1 = 180.00000;
+	float n_out35p0 = n_out36p0 / n_in35p1;
+
+// ScalarOp:37
+	float n_out37p0 = n_out28p0 * n_out35p0;
+
+// ScalarFunc:16
+	float n_out16p0 = cos(n_out37p0);
+
+// ScalarOp:15
+	float n_out15p0 = n_out14p0 * n_out16p0;
+
+// ScalarFunc:18
+	float n_out18p0 = sin(n_out37p0);
+
+// ScalarOp:19
+	float n_out19p0 = n_out14p1 * n_out18p0;
+
+// ScalarOp:20
+	float n_out20p0 = n_out15p0 - n_out19p0;
+
+// ScalarOp:30
+	float n_out30p0 = n_out14p0 * n_out18p0;
+
+// ScalarOp:33
+	float n_out33p0 = n_out14p1 * n_out16p0;
+
+// ScalarOp:32
+	float n_out32p0 = n_out30p0 + n_out33p0;
+
+// VectorCompose:29
+	float n_in29p2 = 0.00000;
+	vec3 n_out29p0 = vec3(n_out20p0, n_out32p0, n_in29p2);
+
+// VectorOp:34
+	vec3 n_in34p1 = vec3(0.50000, 0.50000, 0.00000);
+	vec3 n_out34p0 = n_out29p0 + n_in34p1;
+
+// Texture:23
+	vec4 tex_frg_23_read = texture(tex_frg_23, n_out34p0.xy);
+	vec3 n_out23p0 = tex_frg_23_read.rgb;
+	float n_out23p1 = tex_frg_23_read.a;
+
+// VectorFunc:4
+	vec3 n_out4p0 = normalize(n_out3p0);
+
+// VectorLen:5
+	float n_out5p0 = length(n_out3p0);
+
+// ScalarOp:7
+	float n_in7p1 = 2.00000;
+	float n_out7p0 = n_out5p0 * n_in7p1;
+
+// ScalarOp:6
+	float n_in6p1 = 1.60000;
+	float n_out6p0 = pow(n_out7p0, n_in6p1);
+
+// ScalarOp:8
+	float n_in8p1 = 0.50000;
+	float n_out8p0 = n_out6p0 * n_in8p1;
+
+// VectorOp:9
+	vec3 n_out9p0 = n_out4p0 * vec3(n_out8p0);
+
+// VectorOp:11
+	vec3 n_in11p1 = vec3(0.50000, 0.50000, 0.00000);
+	vec3 n_out11p0 = n_out9p0 + n_in11p1;
+
+// Texture:10
+	vec4 tex_frg_10_read = texture(tex_frg_10, n_out11p0.xy);
+	vec3 n_out10p0 = tex_frg_10_read.rgb;
+	float n_out10p1 = tex_frg_10_read.a;
+
+// Texture:12
+	vec4 tex_frg_12_read = texture(tex_frg_12, n_out10p0.xy);
+	vec3 n_out12p0 = tex_frg_12_read.rgb;
+	float n_out12p1 = tex_frg_12_read.a;
+
+// Texture:24
+	vec4 tex_frg_24_read = texture(tex_frg_24, vec3(n_out7p0).xy);
+	vec3 n_out24p0 = tex_frg_24_read.rgb;
+	float n_out24p1 = tex_frg_24_read.a;
+
+// VectorMix:25
+	vec3 n_out25p0 = mix(n_out12p0, n_out24p0, vec3(n_out24p1));
+
+// VectorOp:22
+	vec3 n_out22p0 = n_out23p0 * n_out25p0;
+
+// Texture:13
+	vec4 tex_frg_13_read = texture(tex_frg_13, vec3(n_out7p0).xy);
+	vec3 n_out13p0 = tex_frg_13_read.rgb;
+	float n_out13p1 = tex_frg_13_read.a;
+
+// Output:0
+	COLOR.rgb = n_out22p0;
+	COLOR.a = dot(n_out13p0, vec3(0.333333, 0.333333, 0.333333));
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -327.541, -412.5 )
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 2380, 260 )
+nodes/fragment/2/node = SubResource( 16 )
+nodes/fragment/2/position = Vector2( -120, 60 )
+nodes/fragment/3/node = SubResource( 28 )
+nodes/fragment/3/position = Vector2( 60, 0 )
+nodes/fragment/4/node = SubResource( 37 )
+nodes/fragment/4/position = Vector2( 320, 0 )
+nodes/fragment/5/node = SubResource( 48 )
+nodes/fragment/5/position = Vector2( 320, 180 )
+nodes/fragment/6/node = SubResource( 50 )
+nodes/fragment/6/position = Vector2( 680, 140 )
+nodes/fragment/7/node = SubResource( 51 )
+nodes/fragment/7/position = Vector2( 500, 180 )
+nodes/fragment/8/node = SubResource( 52 )
+nodes/fragment/8/position = Vector2( 860, 140 )
+nodes/fragment/9/node = SubResource( 53 )
+nodes/fragment/9/position = Vector2( 1080, 0 )
+nodes/fragment/10/node = SubResource( 3 )
+nodes/fragment/10/position = Vector2( 1540, -40 )
+nodes/fragment/11/node = SubResource( 4 )
+nodes/fragment/11/position = Vector2( 1320, 40 )
+nodes/fragment/12/node = SubResource( 7 )
+nodes/fragment/12/position = Vector2( 1740, 40 )
+nodes/fragment/13/node = SubResource( 10 )
+nodes/fragment/13/position = Vector2( 1240, 480 )
+nodes/fragment/14/node = SubResource( 11 )
+nodes/fragment/14/position = Vector2( 320, -440 )
+nodes/fragment/15/node = SubResource( 12 )
+nodes/fragment/15/position = Vector2( 580, -460 )
+nodes/fragment/16/node = SubResource( 13 )
+nodes/fragment/16/position = Vector2( 320, -320 )
+nodes/fragment/18/node = SubResource( 14 )
+nodes/fragment/18/position = Vector2( 320, -160 )
+nodes/fragment/19/node = SubResource( 15 )
+nodes/fragment/19/position = Vector2( 580, -240 )
+nodes/fragment/20/node = SubResource( 17 )
+nodes/fragment/20/position = Vector2( 800, -360 )
+nodes/fragment/22/node = SubResource( 18 )
+nodes/fragment/22/position = Vector2( 2160, 100 )
+nodes/fragment/23/node = SubResource( 21 )
+nodes/fragment/23/position = Vector2( 1740, -160 )
+nodes/fragment/24/node = SubResource( 24 )
+nodes/fragment/24/position = Vector2( 1240, 280 )
+nodes/fragment/25/node = SubResource( 25 )
+nodes/fragment/25/position = Vector2( 1960, 280 )
+nodes/fragment/28/node = SubResource( 26 )
+nodes/fragment/28/position = Vector2( -300, -240 )
+nodes/fragment/29/node = SubResource( 27 )
+nodes/fragment/29/position = Vector2( 1060, -520 )
+nodes/fragment/30/node = SubResource( 29 )
+nodes/fragment/30/position = Vector2( 580, -700 )
+nodes/fragment/32/node = SubResource( 30 )
+nodes/fragment/32/position = Vector2( 820, -700 )
+nodes/fragment/33/node = SubResource( 31 )
+nodes/fragment/33/position = Vector2( 580, -580 )
+nodes/fragment/34/node = SubResource( 32 )
+nodes/fragment/34/position = Vector2( 1300, -280 )
+nodes/fragment/35/node = SubResource( 33 )
+nodes/fragment/35/position = Vector2( -80, -120 )
+nodes/fragment/36/node = SubResource( 34 )
+nodes/fragment/36/position = Vector2( -280, -100 )
+nodes/fragment/37/node = SubResource( 35 )
+nodes/fragment/37/position = Vector2( 100, -240 )
+nodes/fragment/40/node = SubResource( 38 )
+nodes/fragment/40/position = Vector2( 1033, 240 )
+nodes/fragment/40/size = Vector2( 192, 92 )
+nodes/fragment/40/input_ports = ""
+nodes/fragment/40/output_ports = ""
+nodes/fragment/40/expression = "//Atmosphere"
+nodes/fragment/41/node = SubResource( 39 )
+nodes/fragment/41/position = Vector2( -3, -410 )
+nodes/fragment/41/size = Vector2( 164, 154 )
+nodes/fragment/41/input_ports = ""
+nodes/fragment/41/output_ports = ""
+nodes/fragment/41/expression = "//Convert
+//radians
+//to degrees"
+nodes/fragment/42/node = SubResource( 40 )
+nodes/fragment/42/position = Vector2( 1027.58, -270.5 )
+nodes/fragment/42/size = Vector2( 250, 150 )
+nodes/fragment/42/input_ports = ""
+nodes/fragment/42/output_ports = ""
+nodes/fragment/42/expression = "//Here's the rotated
+//UV"
+nodes/fragment/43/node = SubResource( 41 )
+nodes/fragment/43/position = Vector2( 820, -68 )
+nodes/fragment/43/size = Vector2( 192, 92 )
+nodes/fragment/43/input_ports = ""
+nodes/fragment/43/output_ports = ""
+nodes/fragment/43/expression = "//Distort UV"
+nodes/fragment/44/node = SubResource( 42 )
+nodes/fragment/44/position = Vector2( 1906.92, 495 )
+nodes/fragment/44/size = Vector2( 261, 159 )
+nodes/fragment/44/input_ports = ""
+nodes/fragment/44/output_ports = ""
+nodes/fragment/44/expression = "//Mix distorted noise
+//and atmosphere"
+nodes/fragment/45/node = SubResource( 43 )
+nodes/fragment/45/position = Vector2( 2101.92, -181 )
+nodes/fragment/45/size = Vector2( 266, 227 )
+nodes/fragment/45/input_ports = ""
+nodes/fragment/45/output_ports = ""
+nodes/fragment/45/expression = "//Multiply with
+//gradient to give it
+//a shade.
+//In preview, the
+//rotation isn't
+//updated because we
+//use param"
+nodes/fragment/46/node = SubResource( 44 )
+nodes/fragment/46/position = Vector2( 1726.92, -282 )
+nodes/fragment/46/size = Vector2( 171, 108 )
+nodes/fragment/46/input_ports = ""
+nodes/fragment/46/output_ports = ""
+nodes/fragment/46/expression = "//Shade"
+nodes/fragment/47/node = SubResource( 45 )
+nodes/fragment/47/position = Vector2( 518.925, 51 )
+nodes/fragment/47/size = Vector2( 186, 92 )
+nodes/fragment/47/input_ports = ""
+nodes/fragment/47/output_ports = ""
+nodes/fragment/47/expression = "//1.6 is the distortion strength"
+nodes/fragment/48/node = SubResource( 46 )
+nodes/fragment/48/position = Vector2( 784.582, -548.5 )
+nodes/fragment/48/size = Vector2( 206, 157 )
+nodes/fragment/48/input_ports = ""
+nodes/fragment/48/output_ports = ""
+nodes/fragment/48/expression = "//God this is
+//so confusing"
+nodes/fragment/49/node = SubResource( 47 )
+nodes/fragment/49/position = Vector2( -82.0752, 145 )
+nodes/fragment/49/size = Vector2( 249, 115 )
+nodes/fragment/49/input_ports = ""
+nodes/fragment/49/output_ports = ""
+nodes/fragment/49/expression = "//UV is everything"
+nodes/fragment/50/node = SubResource( 49 )
+nodes/fragment/50/position = Vector2( -474.55, -499.815 )
+nodes/fragment/50/size = Vector2( 270, 164 )
+nodes/fragment/50/input_ports = ""
+nodes/fragment/50/output_ports = ""
+nodes/fragment/50/expression = "//Tips: While sliding
+//the rotation param,
+//hold ctrl to get
+//integer value"
+nodes/fragment/connections = PoolIntArray( 2, 0, 3, 0, 3, 0, 4, 0, 3, 0, 5, 0, 5, 0, 7, 0, 7, 0, 6, 0, 6, 0, 8, 0, 4, 0, 9, 0, 8, 0, 9, 1, 9, 0, 11, 0, 10, 0, 12, 0, 7, 0, 13, 0, 14, 0, 15, 0, 16, 0, 15, 1, 18, 0, 19, 1, 15, 0, 20, 0, 19, 0, 20, 1, 23, 0, 22, 0, 7, 0, 24, 0, 24, 1, 25, 2, 24, 0, 25, 1, 12, 0, 25, 0, 25, 0, 22, 1, 11, 0, 10, 0, 22, 0, 0, 0, 3, 0, 14, 0, 20, 0, 29, 0, 14, 1, 19, 0, 14, 0, 30, 0, 18, 0, 30, 1, 30, 0, 32, 0, 14, 1, 33, 0, 16, 0, 33, 1, 33, 0, 32, 1, 32, 0, 29, 1, 34, 0, 23, 0, 36, 0, 35, 0, 35, 0, 37, 1, 37, 0, 18, 0, 37, 0, 16, 0, 29, 0, 34, 0, 13, 0, 0, 1, 28, 0, 37, 0 )
+
+[sub_resource type="ShaderMaterial" id=55]
+shader = SubResource( 54 )
+shader_param/rotation = 45.0
+
+[node name="planet" type="ColorRect"]
+material = SubResource( 55 )
+margin_right = 256.0
+margin_bottom = 256.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
